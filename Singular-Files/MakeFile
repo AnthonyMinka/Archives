@@ -1,0 +1,6 @@
+all:
+	make assembler
+
+assembler:
+	yasm -f elf -g dwarf2 -o assembler.o assembler.asm
+	ld -o assembler assembler.asm
