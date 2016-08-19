@@ -1,1 +1,1 @@
-Some scans I had made.
+Some scans that where made.
