@@ -21,6 +21,8 @@
  * 
  */
 
+// Alows you to search for a term in a local outlook offline file(dating of 2016 summer).
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
