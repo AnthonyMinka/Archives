@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-// Used to win at a geo party using a bank of words
+// Used to win at a jeo party using a bank of words
 
 public class jeo {
 	
