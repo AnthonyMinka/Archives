@@ -47,7 +47,7 @@ def main(args):
 			if debug is True:
 				print >>sys.stderr, 'NCF: ', client_address
 			while True:
-				d = connection.recv(16)
+				d = connection.recv(1024)
 				if d:
 					if "exit" in d: # To allow exit command to exit the connection.
 						break
