@@ -1,7 +1,7 @@
 /*
  * memoryFill.c
  * 
- * Copyright 2015 ro-lt <ro-lt@This>
+ * Copyright 2015 DockTownMayor <DockTownMayor@Host>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
