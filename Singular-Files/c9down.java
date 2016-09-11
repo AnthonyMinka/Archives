@@ -36,6 +36,7 @@ public class c9down {
 			
 			coun[0]++;
 		}
+		System.out.printf("\rDownload Completed.");
 		// The end, yes this waas a sad love story.
 	}
 }
