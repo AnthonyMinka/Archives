@@ -23,8 +23,8 @@ public class c9down {
 				coun[0]=0;
 				coun[1]++;
 			}
-			
-			System.out.println(""+path1 + "x"+alph.charAt(coun[1])+alph.charAt(coun[0]) + path2);
+			System.out.printf("\rCompletion: %d%%", (i*100)/tot);
+			//System.out.println(""+path1 + "x"+alph.charAt(coun[1])+alph.charAt(coun[0]) + path2);
 			try{
 			// Lazyness coding, only allows up to 676 files to be downloaded from a regular split file output.
 				Process proc = rt.exec(String.format("wget -q --random-wait -O "+ "x"+alph.charAt(coun[1])+alph.charAt(coun[0]) +" -nv "+path1 + "x"+alph.charAt(coun[1])+alph.charAt(coun[0]) + path2));
