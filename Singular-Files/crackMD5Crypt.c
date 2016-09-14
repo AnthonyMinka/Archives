@@ -88,7 +88,7 @@ int main(int argc, char **argv)
 				}
 			}
 			fclose(WordList);
-			sleep(60);
+			//sleep(60);
 		}
 		end:
 		if (argc == 4){
