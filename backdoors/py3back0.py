@@ -34,6 +34,8 @@ def tcpClient(connection, client_address, debug, interactive, bufferSize, encodi
 		if debug is True:
 			print ("A new optimist has joined our ranks from " + client_address[0])
 		while True:
+			if status >= 3 and auth is False:
+				auth = True;
 			if auth is True:
 				d = connection.recv(bufferSize)
 			elif status is 0:
@@ -51,7 +53,6 @@ def tcpClient(connection, client_address, debug, interactive, bufferSize, encodi
 					break;
 				l = ""
 				d = ""
-				auth = True
 				status += 1
 			if status >= 3 and auth is True:
 				if d:
