@@ -135,10 +135,11 @@ def removeSession(ip, port, table):
 
 def main(args):
 	protocol = "tcp"
-	host = "::1"
+	host = "127.0.0.1"
 	port = 48379
-	ipversion = 6
+	ipversion = 4
 	username = "johndoe"
+	debug = True
 	if len(args) is 6:
 		username = args[1]
 		protocol = args[2]
@@ -147,7 +148,7 @@ def main(args):
 		ipversion = int(args[5])
 		debug = True
 	interactive = True
-	password = "password"
+	password = "unknown"
 	bufferSize = 4096
 	encoding = 'utf-8'
 	afnet = socket.AF_INET6
