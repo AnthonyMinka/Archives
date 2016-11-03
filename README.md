@@ -5,3 +5,5 @@ Keep in mind that I don't care what you do with anything here, but make sure to 
 
 
 For the C# Codes I recommend loading them using visual studio since otherwise the class and namespace might require modifications in order to be usable.
+
+For a matter of fact: I don't code in php.
