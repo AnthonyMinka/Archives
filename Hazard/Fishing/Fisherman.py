@@ -5,7 +5,7 @@
 def main(args):
 	global sendersFile
 	global receiversFile
-	sendersFile = "senders"
+	sendersFile = "senders" # username:password type file
 	receiversFile = "receivers"
 	mailServer = "mail.company.com"
 	logfiles = "./logs/massfisher.log"
@@ -13,13 +13,15 @@ def main(args):
 	sf = open(sendersFile, "r")
 	rf = open(receiversFile, "r")
 	sendersList = {}
+	sendersAuth = {}
 	receiversList = {}
 	with rf as fin:
 		for line in fin:
 			receiversList[len(receiversList)+1] = str(line)[0:len(str(line))-1]
 	with sf as fin:
 		for line in fin:
-			sendersList[len(sendersList)+1] = str(line)[0:len(str(line))-1]
+			sendersList[len(sendersList)+1] = str(line)[0:len(str(line))-1].split(":")[0]
+			sendersAuth[len(sendersAuth)+1] = str(line)[0:len(str(line))-1].split(":")[1]
 	maxsleep = (maxtime * 60 * 60) / len(receiversList)
 	minsleep = int((75 * maxtime) / 100)
 	messages = os.listdir("Templates")
@@ -29,7 +31,7 @@ def main(args):
 			tmp = messages[random.randint(0, len(messages)-1)]
 		rc = random.sample(list(sendersList),1)
 		time.sleep(random.randint(minsleep, maxsleep))
-		os.system(str("sendemail -f "+sendersList[rc[0]]+" -t "+receiversList[i]+" -s "+mailServer+" -l "+logfiles+"."+str(i)+" -v -o message-content-type=html -o message-file=" + "\"./Templates/"+ tmp + "\" -u \"" + tmp + "\""))
+		os.system(str("sendemail -f "+sendersList[rc[0]]+" -t "+receiversList[i]+" -xu "+sendersList[i]+" -xp "+sendersAuth[i]+" -s "+mailServer+" -l "+logfiles+"."+str(i)+" -v -o message-content-type=html -o message-file=" + "\"./Templates/"+ tmp + "\" -u \"" + tmp + "\""))
 	print("Time to go home and eat those fishes!")
 
 if __name__ == '__main__':
