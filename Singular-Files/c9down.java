@@ -4,40 +4,45 @@ import java.io.*;
 public class c9down {
 	
 	public static void main (String args[]) {
-	  String path = "/home/Downloads/"; // Path in the vm.
-	  String constantnum = "263201"; // User id.
-	  String host = "vfs-gce-usw-27-3"; // Host of the vm. Changes when it shuts down
-	  String sessionTokshit = "9CatjR2KeA6wFd3W"; // Session token.
-		String path1 = "https://"+host+".c9.io/vfs/"+constantnum+"/"+sessionTokshit+path; // First part of the downlaod path.
-		String path2 = "?download&isfile=1"; // (second download path part 2)Maybe we can download a folder directly? Thats would make shit quicker
-		int tot = 31; // Amout of files, cant go over 676 right now.
+		String path1 = "https://vfs-gce-usw-78-1.c9.io/vfs/3624928/9uskQPoaOYvgJeOi/home/Downloads/";
+		String path2 = "?download&isfile=1";
+		int tot = 23;
 		int coun[] = new int[3];
 		coun[0]=0;
 		coun[1]=0;
-		coun[2]=0;// That moment when your lazy...
-		Runtime rt = Runtime.getRuntime(); // Shit caller.
-		String alph = "abcdefghijklmnopqrstuvwxyz"; // Alphabet!!!
-		for (int i = 0; i < tot; i++) // Main loop
+		coun[2]=0;
+		Runtime rt = Runtime.getRuntime();
+		String alph = "abcdefghijklmnopqrstuvwxyz";
+		for (int i = 0; i < tot; i++)
 		{
-			if (coun[0] >= alph.length()){ // Counter checker
+			if (coun[0] >= alph.length()){
 				coun[0]=0;
 				coun[1]++;
 			}
-			System.out.printf("\rCompletion: %d%%", (i*100)/tot);
+			
 			//System.out.println(""+path1 + "x"+alph.charAt(coun[1])+alph.charAt(coun[0]) + path2);
+			System.out.printf("\rCompletion: %d%%", (i*100)/tot);
 			try{
-			// Lazyness coding, only allows up to 676 files to be downloaded from a regular split file output.
 				Process proc = rt.exec(String.format("wget -q --random-wait -O "+ "x"+alph.charAt(coun[1])+alph.charAt(coun[0]) +" -nv "+path1 + "x"+alph.charAt(coun[1])+alph.charAt(coun[0]) + path2));
-				proc.waitFor(); // Can be taken off to start multiple threads(download quicker, but must make sure they stay active and dont shutdown when the app stops)!!
+				proc.waitFor(); // Can be taken off to start multiple threads!!
+				
 			}
 			catch (Exception e){
-					System.out.println("ERROR: "+e); // We never know, might be an error.
+					System.out.println("ERROR: "+e);
 			}
 			
 			coun[0]++;
 		}
+		try{
+			Process proc = rt.exec(String.format("spd-say 'Your download from cloud 9 has finished.'"));
+			proc.waitFor();
+			proc = rt.exec(String.format("cat x* >> c9file")); // Better hope you got no files that start with x
+			proc.waitFor();
+			Thread.sleep(5000);
+		}catch(Exception e){
+			System.out.println("ERROR: "+e);
+		}
 		System.out.printf("\rDownload Completed.");
-		// The end, yes this waas a sad love story.
 	}
 }
 
